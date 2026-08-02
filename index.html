@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💖 4º Mes — Para mi Juli</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Fondo espacial -->
+  <div id="space-bg"></div>
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- ═══════════ MENÚ PRINCIPAL ═══════════ -->
+  <div id="menu" class="scene">
+    <h1 class="titulo-regalo" id="menu-titulo">4º MES</h1>
+    <p class="subtitulo-regalo" id="menu-subtitulo">Un viajecito espacial hasta la cartita de mi juli :3 ✨</p>
+    <div class="papa-hero">🥔🚀</div>
+    <button class="btn" id="btn-jugar">🚀 Iniciar viaje</button>
+    <div class="controles-info">
+      <b>W A S D</b> — mover & saltar &nbsp;•&nbsp;
+      <b>ESPACIO</b> — pausa &nbsp;•&nbsp;
+      <b>R</b> — reiniciar nivel<br />
+      Tu papita 🥔 debe llegar a la <b>🌟 carta final</b>
+    </div>
+  </div>
+
+  <!-- ═══════════ INTRO / CARGA ═══════════ -->
+  <div id="intro" class="scene hidden">
+    <p class="intro-texto" id="intro-texto">Preparando el lanzamiento…</p>
+    <div class="barra-carga"><div class="barra-carga-inner" id="barra-carga"></div></div>
+  </div>
+
+  <!-- ═══════════ JUEGO ═══════════ -->
+  <div id="game" class="scene hidden">
+    <canvas id="game-canvas"></canvas>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-grupo">
+      <span class="hud-etiqueta">Tiempo</span>
+      <span class="hud-valor" id="hud-timer">00:00</span>
+    </div>
+    <div class="hud-grupo" id="hud-checkpoints">
+      <span class="hud-etiqueta">Estaciones</span>
+      <span class="hud-valor" id="hud-checkpoints-valor">0/5</span>
+    </div>
+    <div class="hud-grupo">
+      <span class="hud-etiqueta">Vidas</span>
+      <div class="hud-corazones" id="hud-corazones">❤️❤️❤️</div>
+    </div>
+    <div class="hud-grupo" style="align-items:flex-end;">
+      <span class="hud-etiqueta">Nivel</span>
+      <span class="hud-valor" id="hud-nivel">1</span>
+    </div>
+  </div>
+
+  <!-- Brújula (orientación) -->
+  <div id="brujula" class="hidden">
+    <span id="brujula-flecha">🧭</span>
+  </div>
+
+  <!-- Botón pausa -->
+  <button id="btn-pausa" title="Pausa (Espacio)">⏸️</button>
+
+  <!-- Toast de frases -->
+  <div id="toast"></div>
+
+  <!-- ═══════════ OVERLAY: PAUSA ═══════════ -->
+  <div id="overlay-pausa" class="overlay hidden">
+    <div class="overlay-contenido">
+      <div class="papa-icon">🥔💤</div>
+      <h2 class="overlay-titulo">Pausa espacial</h2>
+      <p class="overlay-texto">El universo te espera, mi amor.<br />Presiona <b>ESPACIO</b> o el botón para continuar.</p>
+      <button class="btn" id="btn-reanudar">▶️ Continuar</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ OVERLAY: MUERTE / GAME OVER ═══════════ -->
+  <div id="overlay-muerte" class="overlay hidden">
+    <div class="overlay-contenido">
+      <div class="papa-icon">🥔💫</div>
+      <h2 class="overlay-titulo">Te perdiste en el espacio…</h2>
+      <p class="overlay-texto" id="muerte-texto">¡Pero el universo es inmenso y el mapa cambia! Inténtalo otra vez mi amor 🌸</p>
+      <button class="btn" id="btn-reintentar">🔄 Reintentar viaje</button>
+      <br />
+      <button class="btn secondary" id="btn-menu-muerte">🏠 Volver al menú</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ OVERLAY: VICTORIA → CARTA ═══════════ -->
+  <div id="overlay-victoria" class="overlay hidden">
+    <div class="overlay-contenido">
+      <div class="papa-icon">🌟✨</div>
+      <h2 class="overlay-titulo">¡LO LOGRASTE MI AMOR! 💖</h2>
+      <p class="overlay-texto">Tu papita valiente cruzó todo el espacio…<br />Y por fin llegó tu recompensa. 💌</p>
+      <button class="btn" id="btn-abrir-carta">📜 Abrir carta</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ LA CARTA 💌 ═══════════ -->
+  <div id="carta" class="overlay hidden">
+    <div class="overlay-contenido">
+      <div class="papa-icon">🥔💌</div>
+      <h2 class="carta-titulo" id="carta-titulo">Para mi Mapachita</h2>
+      <div id="carta-parrafos"></div>
+      <div class="carta-firma" id="carta-firma"></div>
+      <div class="corazonese-flotantes">💖 🥔 💖</div>
+      <br /><br />
+      <button class="btn secondary" id="btn-carta-menu">🏠 Volver al menú</button>
+    </div>
+  </div>
+
+  <!-- Confeti -->
+  <canvas id="confeti-canvas"></canvas>
+
+  <script src="js/config.js"></script>
+  <script src="js/stars.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
